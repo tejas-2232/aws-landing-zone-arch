@@ -48,6 +48,27 @@ A comprehensive, automated solution for implementing AWS Landing Zone using Infr
    cd terraform
    terraform init
    ```
+## Service Control policies
+```json
+{
+    "Version": "2012-10-17",  // Standard AWS policy version
+    "Statement": [
+        {
+            "Sid": "DenyRootAccess",  // Statement ID for identification
+            "Effect": "Deny",         // Explicitly denies the specified actions
+            "Action": "*",            // Applies to all AWS actions
+            "Resource": "*",          // Applies to all resources
+            "Condition": {
+                "StringLike": {
+                    "aws:PrincipalArn": [
+                        "arn:aws:iam::*:root"  // Matches any root user ARN
+                    ]
+                }
+            }
+        }
+    ]
+}
+```
 
 ## Documentation
 
