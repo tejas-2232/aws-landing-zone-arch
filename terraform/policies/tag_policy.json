@@ -1,0 +1,41 @@
+{
+    "tags": {
+        "Project": {
+            "tag_key": {
+                "@@assign": "Project"
+            },
+            "tag_value": {
+                "@@assign": [
+                    "LandingZone"
+                ]
+            }
+        },
+        "Environment": {
+            "tag_key": {
+                "@@assign": "Environment"
+            },
+            "tag_value": {
+                "@@assign": [
+                    "Management",
+                    "Production",
+                    "Staging",
+                    "Development",
+                    "Testing",
+                    "Training"
+                ]
+            }
+        },
+        "ManagedBy": {
+            "tag_key": {
+                "@@assign": "ManagedBy"
+            },
+            "tag_value": {
+                "@@assign": [
+                    "Terraform",
+                    "CloudFormation",
+                    "Manual"
+                ]
+            }
+        }
+    }
+} 
