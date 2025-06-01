@@ -48,7 +48,25 @@ A comprehensive, automated solution for implementing AWS Landing Zone using Infr
    cd terraform
    terraform init
    ```
+
 ## Service Control policies
+
+__Purpose:__ It prevents the use of root user credentials across all accounts in your AWS Organizations. This is security best practice because:
+
+* root users have unrestricted access to all resources
+* root users can't be restricted by IAM policies
+* root users can't be monitored through AWS CloudTrail in the same way as IAM users 
+
+__How it works?:__
+* The `Effect:"Deny"` explicitly blocks the specified actions
+* `"Action": "*"` means it applies to all AWS actions
+* `"Resource": "*" ` means it applies to all AWS resources
+* The condition block specifically targets root users by matching their ARN pattern ( `arn:aws:iam::*:root`)
+
+__Example:__
+
+`deny_root_access.json` file , is a Service Control Policy for AWS Organizations. To break it down:-
+
 ```json
 {
     "Version": "2012-10-17",  // Standard AWS policy version
