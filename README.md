@@ -119,7 +119,51 @@ __How it works:__
 * Tag values must match exactly what's specified in the policy
 * Any attempts to use different tag keys or values will be rejected
 
+__Example:__
 
+```json
+{
+    "tags": {
+        "Project": {
+            "tag_key": {
+                "@@assign": "Project"  // Enforces the tag key name
+            },
+            "tag_value": {
+                "@@assign": [
+                    "LandingZone"      // Only allows this specific value
+                ]
+            }
+        },
+        "Environment": {
+            "tag_key": {
+                "@@assign": "Environment"  // Enforces the tag key name
+            },
+            "tag_value": {
+                "@@assign": [
+                    "Management",      // Allowed environment values
+                    "Production",
+                    "Staging",
+                    "Development",
+                    "Testing",
+                    "Training"
+                ]
+            }
+        },
+        "ManagedBy": {
+            "tag_key": {
+                "@@assign": "ManagedBy"    // Enforces the tag key name
+            },
+            "tag_value": {
+                "@@assign": [
+                    "Terraform",           // Allowed management methods
+                    "CloudFormation",
+                    "Manual"
+                ]
+            }
+        }
+    }
+}
+```
 
 ## Documentation
 
