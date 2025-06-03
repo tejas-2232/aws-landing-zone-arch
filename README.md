@@ -48,6 +48,7 @@ A comprehensive, automated solution for implementing AWS Landing Zone using Infr
    cd terraform
    terraform init
    ```
+## Policies
 
 ## Service Control policies
 
@@ -62,6 +63,16 @@ __How it works?:__
 * `"Action": "*"` means it applies to all AWS actions
 * `"Resource": "*" ` means it applies to all AWS resources
 * The condition block specifically targets root users by matching their ARN pattern ( `arn:aws:iam::*:root`)
+
+__Impact:__
+* This policy will prevent any root user from performing actions in any account where this policy is attached
+* It forces the use of IAM users and roles instead, which can be properly managed and monitored
+* It helps enforce the princile of least privilege
+
+__Best Practice:__
+* This policy is typically attached at the root level of your AWS Organizations
+* It's one of the first security controls you should implement in a multi-account AWS environment
+* It's a part of AWS's security best practices for enterprise environments
 
 __Example:__
 
@@ -87,6 +98,28 @@ __Example:__
     ]
 }
 ```
+## Tag policy:
+This policy is important for several reasons:
+
+__Purpose:__
+
+* Enforces consistent tagging across all AWS accounts in your organization
+* Helps with cost allocation, resource management, and compliance
+* Makes it easier to track and manage resources across multiple accounts
+
+__Required Tags:__u
+* Project: Must be "LandingZone" (enforces project identification)
+* Environment: Must be one of the predefined environments (helps with resource categorization)
+* ManagedBy: Must indicate how the resource is managed (helps with operations)
+
+__How it works:__
+
+* The @@assign operator enforces the exact values that can be used
+* Resources must have all three tags
+* Tag values must match exactly what's specified in the policy
+* Any attempts to use different tag keys or values will be rejected
+
+
 
 ## Documentation
 
