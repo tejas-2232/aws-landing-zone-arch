@@ -119,6 +119,14 @@ __How it works:__
 * Tag values must match exactly what's specified in the policy
 * Any attempts to use different tag keys or values will be rejected
 
+__Benefits:__
+
+* Cost Management: Makes it easier to track costs by project and environment
+* Resource Organization: Helps identify resources across accounts
+* Compliance: Ensures consistent tagging for compliance requirements
+* Automation: Supports automated resource management and cleanup
+* Security: Helps with access control and security policies
+
 __Example:__
 
 ```json
