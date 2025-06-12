@@ -48,6 +48,18 @@ A comprehensive, automated solution for implementing AWS Landing Zone using Infr
    cd terraform
    terraform init
    ```
+
+## Organizational Units
+
+### recommended additional OUs
+
+1. Sandbox: Holds AWS accounts that individual developers can use to experiment with AWS services. Ensure that these accounts can be detached from internal networks.
+
+2. workloads: Contains AWS accounts that host your external-facing application services. You should structure OUs under SDLC and Prod environments (similar to the foundational OUs) in order to isolate and tightly control production workloads.
+
+
+
+
 ## Policies
 
 ## Service Control policies
