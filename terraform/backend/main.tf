@@ -3,13 +3,27 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.0"
+      version = "4.67.0"
     }
   }
 }
 
 provider "aws" {
   region = var.aws_region
+  
+  # Add retry configuration
+  max_retries = 5
+  
+  # Add custom endpoints if needed
+  # endpoints {
+  #   s3 = "https://s3.amazonaws.com"
+  #   dynamodb = "https://dynamodb.amazonaws.com"
+  # }
+}
+
+# Configure the backend to use local state initially
+terraform {
+  backend "local" {}
 }
 
 # S3 bucket for Terraform state
@@ -50,14 +64,6 @@ resource "aws_s3_bucket_public_access_block" "terraform_state" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
-
-# Enable S3 bucket logging
-resource "aws_s3_bucket_logging" "terraform_state" {
-  bucket = aws_s3_bucket.terraform_state.id
-  target_bucket = aws_s3_bucket.terraform_state.id
-  target_prefix = "logs/"
-}
-
 
 # DynamoDB table for state locking
 resource "aws_dynamodb_table" "terraform_state_lock" {
