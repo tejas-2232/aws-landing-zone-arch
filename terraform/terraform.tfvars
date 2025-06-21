@@ -1,0 +1,6 @@
+aws_region = "us-east-1"
+environment = "management"
+project_name = "LandingZone"
+terraform_state_bucket = "your-terraform-state-bucket"
+terraform_state_region = "us-east-1"
+terraform_state_dynamodb_table = "terraform-state-lock" 
